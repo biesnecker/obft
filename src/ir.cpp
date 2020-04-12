@@ -21,6 +21,29 @@ void Instr::setArg0(int v) { arg0_ = v; }
 void Instr::setArg1(int v) { arg1_ = v; }
 void Instr::setArg2(int v) { arg2_ = v; }
 
+std::optional<Instr> Instr::fromChar(char c) {
+    switch (c) {
+        case '<':
+            return shift_left_instr(1);
+        case '>':
+            return shift_right_instr(1);
+        case '+':
+            return increment_instr(1);
+        case '-':
+            return decrement_instr(1);
+        case '.':
+            return write_instr();
+        case ',':
+            return read_instr();
+        case '[':
+            return open_instr();
+        case ']':
+            return close_instr();
+        default:
+            return std::nullopt;
+    }
+}
+
 std::ostream& operator<<(std::ostream& os, const Instr& i) {
     switch (i.getOpcode()) {
         case Opcode::SHIFT_RIGHT:
@@ -68,6 +91,6 @@ Instr decrement_instr(int c) { return Instr(Opcode::DECREMENT, c); }
 Instr write_instr() { return Instr(Opcode::WRITE); }
 Instr read_instr() { return Instr(Opcode::READ); }
 Instr open_instr() { return Instr(Opcode::OPEN); }
-Instr close_instr(int c) { return Instr(Opcode::CLOSE, c); }
+Instr close_instr() { return Instr(Opcode::CLOSE); }
 
 }  // namespace obft

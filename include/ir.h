@@ -1,5 +1,6 @@
 #pragma once
 
+#include <optional>
 #include <ostream>
 
 namespace obft {
@@ -35,6 +36,8 @@ struct Instr {
 
     friend std::ostream& operator<<(std::ostream& os, const Instr& i);
 
+    static std::optional<Instr> fromChar(char c);
+
   private:
     Opcode op_;
     int arg0_;
@@ -51,6 +54,6 @@ Instr decrement_instr(int c);
 Instr write_instr();
 Instr read_instr();
 Instr open_instr();
-Instr close_instr(int c);
+Instr close_instr();
 
 }  // namespace obft

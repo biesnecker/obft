@@ -32,7 +32,8 @@ void Collector::append(Instr&& i) {
             // Set its target to the index after this one.
             instructions_->at(last_open).setArg0(idx_ + 1);
             // And set the close bracket's target to the last open.
-            instructions_->emplace_back(close_instr(last_open));
+            i.setArg0(last_open);
+            instructions_->emplace_back(std::move(i));
             brackets_.pop();
             break;
         default:

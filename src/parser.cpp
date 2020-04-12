@@ -22,34 +22,9 @@ std::unique_ptr<std::vector<Instr>> Parser::parse() const {
     Collector ir;
 
     for (std::istreambuf_iterator<char> i(source), e; i != e; ++i) {
-        switch (*i) {
-            case '<':
-                ir.append(shift_left_instr(1));
-                break;
-            case '>':
-                ir.append(shift_right_instr(1));
-                break;
-            case '+':
-                ir.append(increment_instr(1));
-                break;
-            case '-':
-                ir.append(decrement_instr(1));
-                break;
-            case ',':
-                ir.append(read_instr());
-                break;
-            case '.':
-                ir.append(write_instr());
-                break;
-            case '[':
-                ir.append(open_instr());
-                break;
-            case ']':
-                ir.append(close_instr(0));
-                break;
-            default:
-                // Ignore unmatched characters.
-                break;
+        auto instr = Instr::fromChar(*i);
+        if (instr.has_value()) {
+            ir.append(std::move(*instr));
         }
     }
 

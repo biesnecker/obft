@@ -5,6 +5,7 @@
 namespace obft {
 
 enum class Opcode {
+    NOP,
     END_OF_FILE,
     SHIFT_RIGHT,
     SHIFT_LEFT,
@@ -17,7 +18,8 @@ enum class Opcode {
 };
 
 struct Instr {
-    Instr(Opcode op);
+    Instr();
+    explicit Instr(Opcode op);
     Instr(Opcode op, int arg0);
     Instr(Opcode op, int arg0, int arg1);
     Instr(Opcode op, int arg0, int arg1, int arg2);
@@ -40,6 +42,7 @@ struct Instr {
     int arg2_;
 };
 
+Instr nop_instr();
 Instr eof_instr();
 Instr shift_right_instr(int c);
 Instr shift_left_instr(int c);
@@ -49,7 +52,5 @@ Instr write_instr();
 Instr read_instr();
 Instr open_instr();
 Instr close_instr(int c);
-
-using ProgramListing = std::unique_ptr<std::vector<Instr>>;
 
 }  // namespace obft

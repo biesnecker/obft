@@ -13,7 +13,7 @@ DEFINE_RUNTIME_ERROR_TYPE(ParserException);
 
 struct Parser {
     Parser(std::shared_ptr<Opts> opts);
-    ProgramListing parse() const;
+    std::unique_ptr<std::vector<Instr>> parse() const;
 
   private:
     std::shared_ptr<Opts> opts_;

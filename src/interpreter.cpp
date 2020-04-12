@@ -10,7 +10,7 @@ constexpr auto TAPE_LENGTH = 30000;
 
 Interpreter::Interpreter(std::shared_ptr<Opts> opts) : opts_(opts) {}
 
-uint8_t Interpreter::run(ProgramListing program) const {
+uint8_t Interpreter::run(std::unique_ptr<std::vector<Instr>> program) const {
     auto pc_start = program->data();
     auto pc = pc_start;
     std::array<uint8_t, TAPE_LENGTH> tape{};
@@ -59,6 +59,9 @@ uint8_t Interpreter::run(ProgramListing program) const {
             case Opcode::END_OF_FILE:
                 rval = *tape_ptr;
                 running = false;
+                break;
+            case Opcode::NOP:
+                ++pc;
                 break;
         }
     }

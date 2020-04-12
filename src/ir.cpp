@@ -2,6 +2,8 @@
 
 namespace obft {
 
+Instr::Instr() : Instr(Opcode::NOP, 0, 0, 0) {}
+
 Instr::Instr(Opcode op) : Instr(op, 0, 0, 0) {}
 
 Instr::Instr(Opcode op, int arg0) : Instr(op, arg0, 0, 0) {}
@@ -45,6 +47,9 @@ std::ostream& operator<<(std::ostream& os, const Instr& i) {
         case Opcode::CLOSE:
             os << "CLOSE" << i.getArg0();
             break;
+        case Opcode::NOP:
+            os << "NOP";
+            break;
         case Opcode::END_OF_FILE:
             os << "END_OF_FILE";
             break;
@@ -54,6 +59,7 @@ std::ostream& operator<<(std::ostream& os, const Instr& i) {
 
 /* Helper functions */
 
+Instr nop_instr() { return Instr(Opcode::NOP); }
 Instr eof_instr() { return Instr(Opcode::END_OF_FILE); }
 Instr shift_right_instr(int c) { return Instr(Opcode::SHIFT_RIGHT, c); }
 Instr shift_left_instr(int c) { return Instr(Opcode::SHIFT_LEFT, c); }

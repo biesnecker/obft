@@ -24,6 +24,7 @@ FORMAT_HEADERS = \
 	third-party/include/fmt/ranges.h
 
 OBJS = \
+	src/collector.o \
 	src/interpreter.o \
 	src/ir.o \
 	src/main.o \
@@ -32,6 +33,7 @@ OBJS = \
 	$(FORMAT_OBJS)
 
 HEADERS = \
+	include/collector.h \
 	include/consts.h \
 	include/interpreter.h \
 	include/ir.h \

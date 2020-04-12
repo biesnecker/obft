@@ -8,7 +8,7 @@ namespace obft {
 struct Interpreter {
     Interpreter(std::shared_ptr<Opts> opts);
 
-    uint8_t run(ProgramListing program) const;
+    uint8_t run(std::unique_ptr<std::vector<Instr>> program) const;
 
   private:
     std::shared_ptr<Opts> opts_;

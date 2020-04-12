@@ -3,18 +3,13 @@
 #include <memory>
 #include <vector>
 
+#include "errors.h"
 #include "ir.h"
 #include "opts.h"
 
 namespace obft {
 
-struct ParserException : public std::exception {
-    ParserException(const std::string& message);
-    virtual const char* what() const throw();
-
-  private:
-    std::string message_;
-};
+DEFINE_RUNTIME_ERROR_TYPE(ParserException);
 
 struct Parser {
     Parser(std::shared_ptr<Opts> opts);

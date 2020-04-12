@@ -1,17 +1,12 @@
 #pragma once
 
-#include <exception>
 #include <string>
+
+#include "errors.h"
 
 namespace obft {
 
-struct OptsParsingException : public std::exception {
-    OptsParsingException(const std::string& message);
-    virtual const char* what() const throw();
-
-  private:
-    std::string message_;
-};
+DEFINE_RUNTIME_ERROR_TYPE(OptsParsingException);
 
 struct Opts {
     Opts();

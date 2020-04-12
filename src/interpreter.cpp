@@ -8,13 +8,6 @@ namespace obft {
 
 constexpr auto TAPE_LENGTH = 30000;
 
-InterpreterException::InterpreterException(const std::string& message)
-    : message_(message) {}
-
-const char* InterpreterException::what() const throw() {
-    return message_.c_str();
-}
-
 Interpreter::Interpreter(std::shared_ptr<Opts> opts) : opts_(opts) {}
 
 uint8_t Interpreter::run(ProgramListing program) const {

@@ -6,13 +6,6 @@
 
 namespace obft {
 
-OptsParsingException::OptsParsingException(const std::string& message)
-    : message_(message) {}
-
-const char* OptsParsingException::what() const throw() {
-    return message_.c_str();
-}
-
 Opts::Opts() : filename_(), optimize_(false), verbose_(false) {}
 
 void Opts::parseArgs(int argc, char** argv) {

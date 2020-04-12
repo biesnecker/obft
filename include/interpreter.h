@@ -5,14 +5,6 @@
 
 namespace obft {
 
-struct InterpreterException : public std::exception {
-    InterpreterException(const std::string& message);
-    virtual const char* what() const throw();
-
-  private:
-    std::string message_;
-};
-
 struct Interpreter {
     Interpreter(std::shared_ptr<Opts> opts);
 

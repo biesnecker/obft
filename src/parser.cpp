@@ -9,11 +9,6 @@
 
 namespace obft {
 
-ParserException::ParserException(const std::string& message)
-    : message_(message) {}
-
-const char* ParserException::what() const throw() { return message_.c_str(); }
-
 Parser::Parser(std::shared_ptr<Opts> opts) : opts_(opts) {}
 
 ProgramListing Parser::parse() const {

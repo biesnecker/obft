@@ -1,6 +1,4 @@
-# OBFT
-
-## An optimizing brainfuck transpiler
+# OBFT: an optimizing brainfuck transpiler
 
 Because the world really needs another brainfuck implementation.
 
